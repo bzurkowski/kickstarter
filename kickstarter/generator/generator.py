@@ -21,12 +21,12 @@ class Generator:
 
         for i in range(num_hosts):
             hostname = "%s%d" % (name, i)
-            host_networks = [net_generator.generate() for net_generator in net_generators]
+            networks = [net_generator.generate() for net_generator in net_generators]
 
             variables = {
                 "hostname": hostname,
                 "partitions": partitions,
-                "networks": host_networks
+                "networks": networks
             }
 
             filename = "%s.cfg" % hostname
