@@ -2,7 +2,7 @@ import abc
 import os
 
 from kickstarter.common import logger
-from kickstarter import generator
+from kickstarter import generator as gen
 
 LOG = logger.get_logger(__name__)
 
@@ -19,18 +19,19 @@ class Generate(Command):
     def execute(self, args):
         LOG.info("Generating Kickstart files from arguments: %s", args)
 
+        num_hosts = int(args.get("--num-hosts") or 1)
+
+        disk = int(args.get("--disk") or 10)
+
         output_dir = args.get("--output-dir") or os.getcwd()
         name = args.get("--name") or "kickstart"
 
-        env = generator.Environment()
+        env = gen.Environment()
         template = env.get_template("kickstart.cfg.j2")
-        variables = {"test_value": "foobar"}
+        renderer = gen.Renderer(template)
 
-        filename = "%s.cfg" % name
-        target_path = os.path.join(output_dir, filename)
-
-        renderer = generator.Renderer(template)
-        renderer.render(variables, target_path)
+        generator = gen.Generator(renderer)
+        generator.generate(output_dir, name, num_hosts, disk)
 
 
 def get_command(args):

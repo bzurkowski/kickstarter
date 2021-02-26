@@ -1,6 +1,8 @@
 """Kickstarter
 Usage:
-    kick generate [--output-dir=<output-dir>] [--name=<name>]
+    kick generate [--num-hosts=<num-hosts>]
+                  [--disk=<disk>]
+                  [--output-dir=<output-dir>] [--name=<name>]
     kick -h | --help
 """
 
