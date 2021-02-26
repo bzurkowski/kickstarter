@@ -1,6 +1,6 @@
 """Kickstarter
 Usage:
-    kick generate
+    kick generate [--output-dir=<output-dir>] [--name=<name>]
     kick -h | --help
 """
 
