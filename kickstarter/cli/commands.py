@@ -21,7 +21,7 @@ class Generate(Command):
 
         num_hosts = int(args.get("--num-hosts") or 1)
 
-        disk = int(args.get("--disk") or 10)
+        raw_partitions = args.get("--part")
         raw_networks = args.get("--network")
 
         output_dir = args.get("--output-dir") or os.getcwd()
@@ -32,7 +32,7 @@ class Generate(Command):
         renderer = gen.Renderer(template)
 
         generator = gen.Generator(renderer)
-        generator.generate(output_dir, name, num_hosts, disk, raw_networks)
+        generator.generate(output_dir, name, num_hosts, raw_partitions, raw_networks)
 
 
 def get_command(args):

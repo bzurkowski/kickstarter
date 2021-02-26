@@ -1,7 +1,7 @@
 """Kickstarter
 Usage:
     kick generate [--num-hosts=<num-hosts>]
-                  [--disk=<disk>]
+                  [--part=<part>]...
                   [--network=<network>]...
                   [--output-dir=<output-dir>] [--name=<name>]
     kick -h | --help

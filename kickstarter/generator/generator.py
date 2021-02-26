@@ -8,20 +8,24 @@ class Generator:
     def __init__(self, renderer):
         self._renderer = renderer
 
-    def generate(self, output_dir, name, num_hosts, disk, raw_networks):
+    def generate(self, output_dir, name, num_hosts, raw_paritions, raw_networks):
         net_generators = []
         for raw_network in raw_networks:
             network_args = self._normalize_args(raw_network)
             net_generators.append(NetworkGenerator(**network_args))
 
+        partitions = []
+        for raw_parition in raw_paritions:
+            partition_args = self._normalize_args(raw_parition)
+            partitions.append(partition_args)
+
         for i in range(num_hosts):
             hostname = "%s%d" % (name, i)
-            root_part_size = disk * 1024
             host_networks = [net_generator.generate() for net_generator in net_generators]
 
             variables = {
                 "hostname": hostname,
-                "root_part_size": root_part_size,
+                "partitions": partitions,
                 "networks": host_networks
             }
 
