@@ -2,6 +2,7 @@
 Usage:
     kick generate [--num-hosts=<num-hosts>]
                   [--disk=<disk>]
+                  [--network=<network>]
                   [--output-dir=<output-dir>] [--name=<name>]
     kick -h | --help
 """

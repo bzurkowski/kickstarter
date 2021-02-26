@@ -22,6 +22,8 @@ class Generate(Command):
         num_hosts = int(args.get("--num-hosts") or 1)
 
         disk = int(args.get("--disk") or 10)
+        network = args.get("--network")
+        raw_networks = [network]
 
         output_dir = args.get("--output-dir") or os.getcwd()
         name = args.get("--name") or "kickstart"
@@ -31,7 +33,7 @@ class Generate(Command):
         renderer = gen.Renderer(template)
 
         generator = gen.Generator(renderer)
-        generator.generate(output_dir, name, num_hosts, disk)
+        generator.generate(output_dir, name, num_hosts, disk, raw_networks)
 
 
 def get_command(args):

@@ -32,14 +32,17 @@ clearpart --all --initlabel
 
 #Disk partitioning information
 part /boot --fstype ext4 --size 1024
-part / --fstype ext4 --size 10240
+part / --fstype ext4 --size {{ root_part_size }}
 
 #System authorization infomation
 auth  --useshadow  --enablemd5
 
 #Network information
-network --bootproto=static --ip=172.17.66.31 --netmask=255.255.255.0 --gateway=172.17.66.254 --nameserver=172.29.128.101,8.8.8.8
-network --bootproto=static --ip=10.10.10.31 --netmask=255.255.255.0 --gateway=10.10.10.1 --nameserver=8.8.8.8
+{% for net in networks %}
+network --device={{ net.device }} --bootproto={{ net.proto }} --ip={{ net.ip_address }} --netmask={{ net.net_mask }} --gateway={{ net.gateway }} --nameserver={{ net.nameserver }}
+{% endfor %}
+
+#Hostname
 network --hostname={{ hostname }}
 
 #Firewall configuration
