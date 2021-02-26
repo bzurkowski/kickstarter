@@ -19,7 +19,7 @@ class Generator:
             partition_args = self._normalize_args(raw_parition)
             partitions.append(partition_args)
 
-        for i in range(num_hosts):
+        for i in range(1, num_hosts + 1):
             hostname = "%s%d" % (name, i)
             networks = [net_generator.generate() for net_generator in net_generators]
 
