@@ -22,8 +22,7 @@ class Generate(Command):
         num_hosts = int(args.get("--num-hosts") or 1)
 
         disk = int(args.get("--disk") or 10)
-        network = args.get("--network")
-        raw_networks = [network]
+        raw_networks = args.get("--network")
 
         output_dir = args.get("--output-dir") or os.getcwd()
         name = args.get("--name") or "kickstart"
