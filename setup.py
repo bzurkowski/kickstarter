@@ -21,4 +21,9 @@ setup(
     license='MIT',
     install_requires=get_requirements(),
     packages=find_packages(),
+    entry_points={
+        'console_scripts': [
+            'kick = kickstarter.cmd.cli:main',
+        ],
+    },
     zip_safe=False)
